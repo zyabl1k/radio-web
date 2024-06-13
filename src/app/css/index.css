@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-Ubuntu dark:text-white/[.92];
+    @apply font-Ubuntu dark:text-white/[.92] overflow-x-hidden;
   }
 }
 

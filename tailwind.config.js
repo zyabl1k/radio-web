@@ -11,6 +11,7 @@ export default {
   theme: {
     screens: {
       'sm': { 'max': '700px' },
+      'md': { 'max': '1000px' },
     },
     extend: {
       colors: {

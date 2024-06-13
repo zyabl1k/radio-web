@@ -10,7 +10,7 @@ export const App: FunctionComponent = () => {
       <Flowbite>
         <div className="dark:bg-root-bg-dark w-full min-h-screen bg-root-bg-light">
           <Widget.Navbar />
-          <div className="w-full flex justify-center p-10">
+          <div className="w-full flex justify-center py-10 px-5">
             <Routing />
           </div>
         </div>
