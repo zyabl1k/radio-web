@@ -11,7 +11,7 @@ export default {
   theme: {
     screens: {
       'sm': { 'max': '700px' },
-      'md': { 'max': '1000px' },
+      'ms': { 'max': '1040px' },
     },
     extend: {
       colors: {
@@ -26,7 +26,9 @@ export default {
           },
           card: {
             dark: '#1a1a1a',
-            light: '#e3e3e3'
+            dark_hover: '#1c1c1c',
+            light: '#e3e3e3',
+            light_hover: '#d9d9d9'
           },
         },
       },

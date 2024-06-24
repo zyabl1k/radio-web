@@ -2,20 +2,25 @@ import { FunctionComponent } from 'react'
 import { IMusicCardComponent } from '@types'
 import { FaPlay } from 'react-icons/fa'
 import { SlOptions } from 'react-icons/sl'
-import { Dropdown } from 'flowbite-react'
-import { useDeleteMusicMutation } from '@/entities/music/model/music.model.ts'
+import { Button, Dropdown } from 'flowbite-react'
+import { useDeleteMusicMutation, useStartMusicMutation } from '@/entities/music/model/music.model.ts'
 
 export const MusicCardComponent: FunctionComponent<IMusicCardComponent> = ({ music }) => {
-  const [request] = useDeleteMusicMutation();
+  const [deleteRequest] = useDeleteMusicMutation();
+  const [startRequest] = useStartMusicMutation();
 
   const handleDeleteMusic = () => {
-    request(music.id)
+    deleteRequest(music.id)
+  }
+
+  const handleStartMusic = () => {
+    startRequest(music.id)
   }
 
   return (
-    <div className="bg-transparent flex w-full justify-between items-center hover:bg-root-card-light dark:hover:bg-root-card-dark transition rounded p-3 group">
+    <div className="bg-transparent flex w-[49.6%] mx-auto justify-between items-center hover:bg-root-card-light dark:hover:bg-root-card-dark transition rounded p-3 pl-0 group">
       <div className="flex items-center gap-3">
-        <FaPlay className="cursor-pointer" />
+        <Button color="primal" onClick={handleStartMusic}><FaPlay className="cursor-pointer" /></Button>
         <h1 className="text-ellipsis sm:max-w-[150px] max-w-[250px] overflow-hidden whitespace-nowrap">{music.name}</h1>
       </div>
       <div className="flex items-center gap-5">

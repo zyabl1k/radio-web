@@ -23,6 +23,7 @@ interface CoreConfiguration {
 interface __APPLICATION_CONFIG__ {
   baseUrl: string;
   limit: number;
+  imgHolderUrl: string;
   routes: Readonly<{
     music: string;
     any: string;
@@ -38,8 +39,21 @@ interface ICreateModal {
 }
 
 /**
+ * @Pagination
+ */
+interface initialStatePagination {
+  music: number
+  playlist: number
+}
+
+/**
  * @Music
  */
+interface IMusicList {
+  head: number
+  body: IMusic[]
+}
+
 interface IMusic {
   id: number
   name: string
@@ -61,6 +75,31 @@ interface IMusicSettingsComponent {
 }
 
 /**
+ * @Playlist
+ */
+export interface IPlayList {
+  head: number
+  body: IPlaylist[]
+}
+
+export interface IPlaylist {
+  id: number
+  name: string
+  description: string
+  imgPath: string
+}
+
+interface IPlaylistCardComponent {
+  playlist: IPlaylist
+}
+
+interface ICreatePlaylist {
+  name: string
+  description: string
+  file: File | undefined
+}
+
+/**
  * @Widgets
  */
 interface IAlert {
@@ -69,6 +108,12 @@ interface IAlert {
   show: boolean;
   // eslint-disable-next-line @typescript-eslint/ban-types
   resetShow: Function;
+}
+
+interface IEmpty {
+  emoji: string
+  title: string
+  description: string
 }
 
 type IAlertState = Omit<IAlert, 'resetShow'>

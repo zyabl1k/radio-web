@@ -1,9 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { ThemeSliceReducer } from './slices';
+import { PaginationSliceReducer, ThemeSliceReducer } from './slices'
 import { MusicAPI } from '@/entities/music/model/music.model.ts'
+import { PlaylistAPI } from '@/entities/playlist/model/playlist.model.ts'
 
 const rootReducer = combineReducers({
+  PaginationReducer: PaginationSliceReducer,
   ThemeReducer: ThemeSliceReducer,
+  [PlaylistAPI.reducerPath]: PlaylistAPI.reducer,
   [MusicAPI.reducerPath]: MusicAPI.reducer,
 })
 
@@ -12,6 +15,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       MusicAPI.middleware,
+      PlaylistAPI.middleware,
     ),
 });
 
