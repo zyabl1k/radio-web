@@ -101,7 +101,7 @@ interface IMusic {
 
 interface ICreateMusic {
   namePlayList: string
-  file: string
+  file: File
 }
 
 interface IMusicCardComponent {
@@ -134,7 +134,7 @@ interface IPlaylistCardComponent {
 interface ICreatePlaylist {
   name: string
   description: string
-  file: File | undefined
+  file: File
 }
 
 /**

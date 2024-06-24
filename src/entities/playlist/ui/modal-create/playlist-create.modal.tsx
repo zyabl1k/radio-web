@@ -29,13 +29,21 @@ export const PlaylistCreateModal: FunctionComponent<ICreateModal> = ({ openModal
   };
 
   const handleSendPlaylist = () => {
-    if (!name.length || !description.length) {
+    if (!name.length || !description.length ) {
       return setAlertObj({
         text: 'Данные плейлиста отсутствуют',
         status: 'fail',
         show: true,
       })
     }
+    if (!selectedFile) {
+      return setAlertObj({
+        text: 'Фото не выбрано',
+        status: 'fail',
+        show: true,
+      })
+    }
+
     const data: ICreatePlaylist = {
       name: name,
       description: description,
@@ -86,7 +94,7 @@ export const PlaylistCreateModal: FunctionComponent<ICreateModal> = ({ openModal
         <div className="mb-2 mt-4 block">
           <Label htmlFor="file" value="Выберите фото" />
         </div>
-        <FileInput id="file" onChange={handleFileChange} ref={fileInputRef} helperText="Вы можете поставить фото для своего плейлиста (но это не обязательно)" />
+        <FileInput id="file" onChange={handleFileChange} ref={fileInputRef} helperText="Вы можете поставить фото для своего плейлиста" />
         <div className="min-w-[220px] group relative max-w-[220px] mt-5 mx-auto">
           <div className="relative group">
             <img
@@ -94,7 +102,7 @@ export const PlaylistCreateModal: FunctionComponent<ICreateModal> = ({ openModal
               src={selectedFile ? URL.createObjectURL(selectedFile) : __APPLICATION__.imgHolderUrl}
               alt="Selected image"
             />
-            <MdDelete size={45} onClick={handleDeleteAvatar} className="text-red-500 transition hidden group-hover:block absolute top-6 left-4 cursor-pointer hover:text-red-700" />
+            <MdDelete size={75} onClick={handleDeleteAvatar} className="text-red-500 transition hidden group-hover:block absolute top-[66px] left-[76px] cursor-pointer hover:text-red-700" />
           </div>
           <div className="flex flex-col items-start justify-start text-start">
             <div className="flex items-center justify-between">

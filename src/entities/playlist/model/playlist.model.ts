@@ -26,12 +26,16 @@ export const PlaylistAPI = createApi({
       transformResponse: (response: boolean) => response,
     }),
     CreatePlaylist: build.mutation<boolean, ICreatePlaylist>({
-      query: (data) => ({
-        url: `PlayList/CreatePlayList?name=${data.name}&description=${data.description}`,
-        method: 'POST',
-        headers: { 'Content-Type': 'multipart/form-data' },
-        body: data.file
-      }),
+      query: (data) => {
+        const formFile = new FormData();
+        formFile.append('formFile', data.file);
+
+        return {
+          url: `PlayList/CreatePlayList?name=${data.name}&description=${data.description}`,
+          method: 'POST',
+          body: formFile
+        };
+      },
       invalidatesTags: ['Playlist'],
       transformResponse: (response: boolean) => response,
     }),

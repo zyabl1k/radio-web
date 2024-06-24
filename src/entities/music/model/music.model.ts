@@ -35,15 +35,20 @@ export const MusicAPI = createApi({
       transformResponse: (response: boolean) => response,
     }),
     CreateMusic: build.mutation<boolean, ICreateMusic>({
-      query: (data) => ({
-        url: `Music/SaveMusic?namePlayList=${data.namePlayList}`,
-        method: 'POST',
-        headers: { 'Content-Type': 'multipart/form-data' },
-        body: data.file
-      }),
+      query: (data) => {
+        const formFile = new FormData();
+        formFile.append('formFile', data.file);
+
+        return {
+          url: `Music/SaveMusic?namePlayList=${data.namePlayList}`,
+          method: 'POST',
+          body: formFile
+        };
+      },
       invalidatesTags: ['Music'],
       transformResponse: (response: boolean) => response,
     }),
+
   })
 })
 

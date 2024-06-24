@@ -7,7 +7,7 @@ import { useCreateMusicMutation } from '@/entities/music/model/music.model.ts'
 export const AddMusicModal: FunctionComponent<ICreateModal> = ({ openModal, setOpenModal }) => {
   const [request, { isSuccess, isLoading }] = useCreateMusicMutation();
   const [playlistName, setPlaylistName] = useState<string>('')
-  const [selectedMusic, setSelectedMusic] = useState<string | undefined>();
+  const [selectedMusic, setSelectedMusic] = useState<File | undefined>(undefined);
   const [alertObj, setAlertObj] = useState<IAlertState>({
     text: '',
     status: '',
@@ -18,6 +18,7 @@ export const AddMusicModal: FunctionComponent<ICreateModal> = ({ openModal, setO
     if (!selectedMusic) {
       return setAlertObj({ text: 'Вставьте музыку', status: 'fail', show: true });
     }
+
     request({
       namePlayList: playlistName.length ? playlistName : 'All',
       file: selectedMusic
@@ -37,7 +38,7 @@ export const AddMusicModal: FunctionComponent<ICreateModal> = ({ openModal, setO
       alert('Файл должен быть не более 50Мб');
       e.target.value = '';
     } else {
-      setSelectedMusic(URL.createObjectURL(file));
+      setSelectedMusic(file);
     }
   };
 
@@ -53,10 +54,10 @@ export const AddMusicModal: FunctionComponent<ICreateModal> = ({ openModal, setO
         <audio
           className="w-full mt-5"
           controls
-          src={selectedMusic}
+          src={selectedMusic && URL.createObjectURL(selectedMusic)}
         />
         <div className="mt-2 block">
-          <Label htmlFor="playlist-name" value="азвание плейлиста" />
+          <Label htmlFor="playlist-name" value="Название плейлиста" />
         </div>
         <TextInput id="playlist-name" onChange={(e) => setPlaylistName(e.target.value)} value={playlistName} className="mb-2" placeholder="Для объединения (не обязательно)" type="text" sizing="sm" />
       </Modal.Body>
