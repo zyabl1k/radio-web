@@ -18,16 +18,54 @@ interface CoreConfiguration {
 }
 
 /**
+ * @Stream
+ */
+interface IRecorderInitialState {
+  recordingMinutes: number
+  recordingSeconds: number
+  initRecording: boolean
+  mediaStream: MediaStream | null;
+  mediaRecorder: MediaRecorder | null;
+  audio: Blob | null;
+}
+
+interface IRecorderController {
+  recorderState: IRecorderInitialState
+  handlers: IUseRecorder
+}
+
+interface IUseRecorder {
+  startRecording: () => Promise<void>,
+  cancelRecording: () => void,
+  saveRecording: () => void
+}
+
+interface IRecordings {
+  key: string
+  audio: Blob | null
+}
+
+type RecorderListComponent = Omit<IRecordings, 'key'>
+
+/**
  * @Config
  */
 interface __APPLICATION_CONFIG__ {
   baseUrl: string;
   limit: number;
   imgHolderUrl: string;
-  routes: Readonly<{
-    music: string;
-    any: string;
-  }>;
+  constants: Readonly<IConstants>
+  routes: Readonly<IRoutes>;
+}
+
+interface IRoutes {
+  music: string;
+  stream: string;
+  any: string;
+}
+
+interface IConstants {
+  recorder: IRecorderInitialState
 }
 
 /**

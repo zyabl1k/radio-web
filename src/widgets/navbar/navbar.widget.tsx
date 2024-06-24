@@ -3,6 +3,7 @@ import { Navbar } from 'flowbite-react';
 import { NavbarCard } from '@/widgets/navbar/ui/navbar-link.ui.tsx'
 import { Feature } from '@/features'
 import { LuMusic } from 'react-icons/lu'
+import { CiStreamOn } from 'react-icons/ci'
 
 export const NavbarWidget: FunctionComponent = () => {
   return(
@@ -15,6 +16,7 @@ export const NavbarWidget: FunctionComponent = () => {
       </Navbar.Brand>
       <div className="flex flex-row sm:hidden gap-2">
         <NavbarCard icon={<LuMusic />} text="Музыка" link="/"/>
+        <NavbarCard icon={<CiStreamOn />} text="Стримы" link="/stream"/>
       </div>
       <div className="flex items-center gap-2 md:order-2">
         <Feature.ThemeToggle />
@@ -22,6 +24,7 @@ export const NavbarWidget: FunctionComponent = () => {
       </div>
       <Navbar.Collapse>
         <Navbar.Link className="flex items-center gap-2" href="/"><LuMusic />Музыка</Navbar.Link>
+        <Navbar.Link className="flex items-center gap-2" href="/"><CiStreamOn />Стримы</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   )
