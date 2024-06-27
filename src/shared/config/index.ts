@@ -17,6 +17,8 @@ export const __APPLICATION__: __APPLICATION_CONFIG__ = {
   routes: {
     music: '/',
     stream: '/stream',
+    playlist: '/playlist/:name/:id',
+    scenarios: 'scenarios',
     any: '*',
   }
 }

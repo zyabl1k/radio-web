@@ -48,7 +48,6 @@ export const MusicAPI = createApi({
       invalidatesTags: ['Music'],
       transformResponse: (response: boolean) => response,
     }),
-
   })
 })
 

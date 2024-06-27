@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState: initialStatePagination = {
   music: 1,
   playlist: 1,
+  scenario: 1,
 }
 
 export const PaginationSlice = createSlice({
@@ -15,6 +16,9 @@ export const PaginationSlice = createSlice({
     },
     setPagePlaylist: (state, action) => {
       state.playlist = action.payload;
+    },
+    setPageScenario: (state, action) => {
+      state.scenario = action.payload;
     },
   },
 })

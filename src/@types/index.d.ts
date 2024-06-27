@@ -61,11 +61,34 @@ interface __APPLICATION_CONFIG__ {
 interface IRoutes {
   music: string;
   stream: string;
+  playlist: string;
+  scenarios: string;
   any: string;
 }
 
 interface IConstants {
   recorder: IRecorderInitialState
+}
+
+/**
+ * @Scenario
+ */
+interface IScenarioList {
+  head: number
+  body: IScenario[]
+}
+
+interface IScenario {
+  id: number,
+  name: string,
+  idMicroController: number[],
+  time: string,
+  days: string[],
+  idMusic: number
+}
+
+interface IScenarioCardComponent {
+  scenario: IScenario
 }
 
 /**
@@ -82,6 +105,7 @@ interface ICreateModal {
 interface initialStatePagination {
   music: number
   playlist: number
+  scenario: number
 }
 
 /**
@@ -104,8 +128,14 @@ interface ICreateMusic {
   file: File
 }
 
+interface ISendLifeSession {
+  idController: number
+  file: Blob
+}
+
 interface IMusicCardComponent {
   music: IMusic
+  isPlaylist?: boolean
 }
 
 interface IMusicSettingsComponent {
@@ -118,6 +148,11 @@ interface IMusicSettingsComponent {
 export interface IPlayList {
   head: number
   body: IPlaylist[]
+}
+
+interface IPlaylistComponent {
+  id: number
+  name: string
 }
 
 export interface IPlaylist {

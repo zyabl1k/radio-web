@@ -4,6 +4,7 @@ import { NavbarCard } from '@/widgets/navbar/ui/navbar-link.ui.tsx'
 import { Feature } from '@/features'
 import { LuMusic } from 'react-icons/lu'
 import { CiStreamOn } from 'react-icons/ci'
+import { GrSchedules } from 'react-icons/gr'
 
 export const NavbarWidget: FunctionComponent = () => {
   return(
@@ -17,6 +18,7 @@ export const NavbarWidget: FunctionComponent = () => {
       <div className="flex flex-row sm:hidden gap-2">
         <NavbarCard icon={<LuMusic />} text="Музыка" link="/"/>
         <NavbarCard icon={<CiStreamOn />} text="Стримы" link="/stream"/>
+        <NavbarCard icon={<GrSchedules />} text="Сценарии" link="/scenarios"/>
       </div>
       <div className="flex items-center gap-2 md:order-2">
         <Feature.ThemeToggle />
@@ -25,6 +27,7 @@ export const NavbarWidget: FunctionComponent = () => {
       <Navbar.Collapse>
         <Navbar.Link className="flex items-center gap-2" href="/"><LuMusic />Музыка</Navbar.Link>
         <Navbar.Link className="flex items-center gap-2" href="/"><CiStreamOn />Стримы</Navbar.Link>
+        <Navbar.Link className="flex items-center gap-2" href="/"><GrSchedules />Сценарии</Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
   )

@@ -1,6 +1,6 @@
 import { __APPLICATION__ } from '@/shared/config'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ICreatePlaylist, IPlayList } from '@types'
+import { ICreatePlaylist, IMusic, IPlaylist, IPlayList } from '@types'
 
 export const PlaylistAPI = createApi({
   reducerPath: 'playlist/api',
@@ -16,6 +16,22 @@ export const PlaylistAPI = createApi({
       }),
       providesTags: ['Playlist'],
       transformResponse: (response: IPlayList) => response,
+    }),
+    GetPlaylistById: build.query<IPlaylist, number>({
+      query: (id: number) => ({
+        url: `PlayList/GetPlayListId?id=${id}`,
+        method: 'GET',
+      }),
+      providesTags: ['Playlist'],
+      transformResponse: (response: IPlaylist) => response,
+    }),
+    GetMusicPlaylist: build.query<IMusic[], string>({
+      query: (name: string) => ({
+        url: `Music/GetMusicPlayListTag?name=${name}`,
+        method: 'GET',
+      }),
+      providesTags: ['Playlist'],
+      transformResponse: (response: IMusic[]) => response,
     }),
     DeletePlaylist: build.mutation<boolean, number>({
       query: (id) => ({
@@ -45,5 +61,7 @@ export const PlaylistAPI = createApi({
 export const {
   useGetPlayListQuery,
   useDeletePlaylistMutation,
-  useCreatePlaylistMutation
+  useCreatePlaylistMutation,
+  useGetPlaylistByIdQuery,
+  useGetMusicPlaylistQuery
 } = PlaylistAPI
